@@ -1,16 +1,22 @@
-<?php include 'conexao.php';
+<?php
+include 'conexao.php';
 
-$id = $$_GET['id'] ?? null;
+// Crie a conexão usando a classe Database (POO)
+$db = new Database();
+$con = $db->con;
+
+$id = $_GET['id'] ?? null;
 
 if (!$id) {
     die("ID invalido.");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = $_POST ['titulo'];
-    $autor = $_POST ['autor'];
+    $titulo = $_POST['titulo'];
+    $autor = $_POST['autor'];
 
-    $stmt = $con->prepare("UPDATE livros SET titulo = ?, autor = ?, WHERE id = ?");
+    // Remova a vírgula extra após 'autor = ?'
+    $stmt = $con->prepare("UPDATE livros SET titulo = ?, autor = ? WHERE id = ?");
     $stmt->bind_param("ssi", $titulo, $autor, $id);
     $stmt->execute();
 
@@ -18,16 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-
-
 $stmt = $con->prepare("SELECT * FROM livros WHERE id = ?");
-$stmt ->bind_param("i", $id);
+$stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $livro = $result->fetch_assoc();
 
 if (!$livro) {
-    die ("Livro nao encontrado");
+    die("Livro nao encontrado");
 }
 ?>
 

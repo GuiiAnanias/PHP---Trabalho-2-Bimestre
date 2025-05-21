@@ -1,55 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    font-family: 'Quicksand', Arial, sans-serif;
+    background: linear-gradient(120deg, #232526 0%, #414345 100%);
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .container {
     max-width: 700px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
+    width: 100%;
+    margin: 32px 0;
+    background: rgba(34, 40, 49, 0.98);
+    padding: 48px 36px 36px 36px;
+    border-radius: 22px;
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.25), 0 2px 4px 0 rgba(0,0,0,0.10);
+    transition: box-shadow 0.3s;
+}
+
+.container:hover {
+    box-shadow: 0 16px 56px 0 rgba(0,0,0,0.32), 0 4px 12px 0 rgba(0,0,0,0.12);
 }
 
 h1 {
-    color: #333;
+    color: #f8fafc;
+    font-weight: 700;
+    margin-bottom: 28px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-shadow: 0 2px 8px #23252644;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 14px;
+    margin-bottom: 18px;
+    border: 1.5px solid #393e46;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background: #232931;
+    color: #f8fafc;
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+
+input[type="text"]:focus {
+    border: 1.5px solid #00adb5;
+    outline: none;
+    background: #393e46;
+    box-shadow: 0 2px 8px #00adb544;
+    color: #fff;
 }
 
 button, .botao {
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
+    padding: 13px 26px;
+    background: linear-gradient(90deg, #00adb5 60%, #00c6fb 100%);
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     text-decoration: none;
     cursor: pointer;
+    font-weight: 700;
+    font-size: 1.05rem;
+    box-shadow: 0 2px 12px rgba(0,173,181,0.13);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    margin-right: 10px;
+    letter-spacing: 0.5px;
 }
 
 button:hover, .botao:hover {
-    background: #0056b3;
+    background: linear-gradient(90deg, #393e46 60%, #00adb5 100%);
+    box-shadow: 0 6px 24px rgba(0,173,181,0.22);
+    transform: translateY(-2px) scale(1.03);
+}
+
+a {
+    color: #00adb5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #f8fafc;
+    text-decoration: underline;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 32px;
+    background: #232931;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,173,181,0.10);
 }
 
 table th, table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 16px 12px;
+    border-bottom: 1px solid #393e46;
     text-align: left;
+    font-size: 1.05rem;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+table th {
+    background: #00adb5;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    box-shadow: 0 2px 8px #00adb544;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 800px) {
+    .container {
+        max-width: 98vw;
+        padding: 24px 8px;
+    }
+    table th, table td {
+        padding: 10px 4px;
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 10px 1vw;
+    }
+    h1 {
+        font-size: 1.1rem;
+    }
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    table th {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+    table tr {
+        margin-bottom: 18px;
+        background: #393e46;
+        border-radius: 8px;
+        box-shadow: 0 1px 8px rgba(0,173,181,0.10);
+        padding: 10px 0;
+    }
+    table td {
+        border: none;
+        position: relative;
+        padding-left: 52%;
+        font-size: 1rem;
+        min-height: 32px;
+        color: #f8fafc;
+    }
+    table td:before {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 700;
+        color: #00adb5;
+        content: attr(data-label);
+    }
 }

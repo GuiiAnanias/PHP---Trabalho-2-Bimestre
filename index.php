@@ -1,4 +1,9 @@
-<?php include 'conexao.php';?>
+<?php
+include 'conexao.php';
+
+$db = new Database();
+$con = $db->con;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +16,7 @@
 <body>
     <div class="container">
     <h1>Catálogo de livros</h1>
-    <a href="add.php" class="botao">+adicionar livros</a>
+    <a href="adicionar.php" class="botao">+adicionar livros</a>
 
     <table>
             <tr>
@@ -30,7 +35,7 @@
                     <td><?= htmlspecialchars($livro['titulo']) ?></td>
                     <td><?= htmlspecialchars($livro['autor']) ?></td>
                     <td>
-                        <a href="edit.php?id=<?= $livro['id'] ?>">Editar</a> |
+                        <a href="editar.php?id=<?= $livro['id'] ?>">Editar</a> |
                         <a href="delete.php?id=<?= $livro['id'] ?>" onclick="return confirm('Tem certeza?')">Remover</a>
                     </td>
                 </tr>

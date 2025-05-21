@@ -1,15 +1,26 @@
 <?php
-$host = 'localhost';
-$usuario = 'root';
-$senha = ' ';
-$banco = 'catalogo';
+class Database {
+    private $host = 'localhost';
+    private $usuario = 'root';
+    private $senha = '';
+    private $banco = 'catalogo';
+    private $port = 3306;
+    public $con;
 
+    public function __construct() {
+        $this->con = new mysqli(
+            $this->host,
+            $this->usuario,
+            $this->senha,
+            $this->banco,
+            $this->port
+        );
 
-$con = new mysqli($host, $usuario, $senha, $banco);
-
-
-if($con->connect_error) {
-    die("Erro de conexão: ". $con->connect_error);
-
+        if ($this->con->connect_error) {
+            die("Erro de conexão: " . $this->con->connect_error);
+        }
+    }
 }
+
+
 ?>

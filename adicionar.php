@@ -1,16 +1,19 @@
-<?php include 'conexao.php';
+<?php
+include 'conexao.php';
+
+$db = new Database();
+$con = $db->con;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
-    $autor = $_POST ['autor'];
- 
+    $autor = $_POST['autor'];
 
-$stmt = $con ->prepare ("INSERT INTO livros (titulo, autor) VALUES (?, ?)");
-$stmt->bind_param("ss", $titulo, $autor);
-$stmt->execute();
+    $stmt = $con->prepare("INSERT INTO livros (titulo, autor) VALUES (?, ?)");
+    $stmt->bind_param("ss", $titulo, $autor);
+    $stmt->execute();
 
-header("Location: index.php");
-exit;
+    header("Location: index.php");
+    exit;
 }
 ?>
 
